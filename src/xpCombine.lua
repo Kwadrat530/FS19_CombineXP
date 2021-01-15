@@ -377,7 +377,7 @@ function xpCombine:onUpdateTick(dt, isActiveForInput, isActiveForInputIgnoreSele
                             --reduce speedlimit
                             spec.speedLimit = math.max(2, math.min(spec.speedLimit, avgSpeed*3.6) - 10 * (1 - avgArea/maxAvgArea)^2); --0.1kph step --allow 5% margin to avoid "yo-yo" effect
                             if xpCombine.debug then print("reduce speedlimit "..tostring(spec.speedLimit)) end
-                        elseif (3.6*avgSpeed)>spec.speedLimit and avgArea<maxAvgArea then -- not limited by the engine, nor by the combine capacity
+                        elseif (3.6*avgSpeed)<spec.speedLimit and avgArea<maxAvgArea then -- not limited by the engine, nor by the combine capacity
                             --increase speedlimit
                             spec.speedLimit = math.min(spec.mrGenuineSpeedLimit, spec.speedLimit + 0.1 * (maxAvgArea / avgArea)^3);
                             if xpCombine.debug then print("increase speedlimit "..tostring(spec.speedLimit)) end
